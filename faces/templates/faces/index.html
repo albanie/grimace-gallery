@@ -1,0 +1,14 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'faces/style.css' %}" />
+
+{% if face_list %}
+	<ul>
+	{% for face in face_list %}
+	<li>{{ face.img_name }}</li>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>No faces available.</p>
+{% endif %}
+
