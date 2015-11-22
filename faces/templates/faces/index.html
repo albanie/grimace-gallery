@@ -1,14 +1,89 @@
 {% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
-<link rel="stylesheet" type="text/css" href="{% static 'faces/style.css' %}" />
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Grimaces </title>
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-{% if face_list %}
-	<ul>
-	{% for face in face_list %}
-	<li>{{ face.img_name }}</li>
-	{% endfor %}
-	</ul>
-{% else %}
-	<p>No faces available.</p>
-{% endif %}
+	  <!-- Mobile Specific Metas
+	  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+	  <!-- FONT
+	  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+	  <!-- CSS
+	  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	  <link rel="stylesheet" href="{% static 'faces/css/normalize.css' %}">
+	  <link rel="stylesheet" href="{% static 'faces/css/skeleton.css' %}">
+
+	  <!-- Favicon
+	  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	  <link rel="icon" type="image/png" href="{% static 'faces/images/favicon.png' %}">
+
+
+	</head>
+	<body>
+
+	  <!-- Primary Page Layout
+	  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	  <div class="container">
+	    <div class="row">
+	      <div class="one-half column" style="margin-top: 20%">
+		<h4>Grimaces dataset</h4>
+		<p>The grimaces dataset consists of a collection of faces, together with the gradient of the racing surface extracted from footage of the Tour de France, running between 2012 and 2014.</p>
+		</div>	
+	     </div>
+	    <div class="row">
+		 <div class="one-half column">
+			<h5>Statistics</h5>	
+
+			<p>The dataset contains a total of {{ num_total_faces }} faces, which are distributed by year as follows:</p>
+		<table class="u-full-width">
+		  <thead>
+		    <tr>
+		      <th>Year</th>
+		      <th>Number of faces</th>
+		      <th>Gradient range</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <td>2012</td>
+		      <td>{{ num_faces_2012 }}</td>
+		      <td>{{ min_gradient_2012 }}% to {{ max_gradient_2012 }}%</td>
+		    </tr>
+		    <tr>
+		      <td>2013</td>
+		      <td>{{ num_faces_2013 }}</td>
+		      <td>{{ min_gradient_2013 }}% to {{ max_gradient_2013 }}%</td>
+		    </tr>
+		    <tr>
+		      <td>2014</td>
+		      <td>{{ num_faces_2014 }}</td>
+		      <td>{{ min_gradient_2014 }}% to {{ max_gradient_2014 }}%</td>
+		    </tr>
+		  </tbody>
+		</table>
+		</div>
+		 <div class="one-half column" style="margin-top: 10%">
+			{{ chart | safe}}
+		</div>
+	</div>
+	    <div class="row">
+		 <div class="one-half column">
+		<p>Each face has a minimum size of {{ min_face_size }} pixels. The faces can be viewed <a href="/cyclists">here</a>.</p>
+	      </div>
+    </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

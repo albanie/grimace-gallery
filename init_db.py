@@ -1,5 +1,6 @@
 import os
 import sys
+import scipy.misc
 from glob import glob
 
 """Before importing other modules, we need to add the project
@@ -17,10 +18,15 @@ def parse_name(img_name):
     e.g.
     /2014/9/9-00_08:10:000:0:0.0.jpg."""
     img_attributes = {}
-    img_attributes['img_name'] = img_name
+    img_attributes['img_name'] = img_name[12:]
     img_attributes['year'] = int(img_name.split('/')[-3])
     img_attributes['stage_num'] = int(img_name.split('/')[-2])
+    time_string = img_name.split('-')[-1]
+    img_attributes['time'] = ":".join(time_string.split(':')[:3])
     img_attributes['gradient'] = float(img_name.split(':')[-1][:-4])
+    img = scipy.misc.imread(img_name)
+    size = img.shape[0] * img.shape[1]
+    img_attributes['size'] = size
     return img_attributes
 
 def save_faces():
@@ -33,6 +39,8 @@ def save_faces():
                 img_name=attribute_set['img_name'],
                 year=attribute_set['year'],
                 stage_num=attribute_set['stage_num'],
+                time=attribute_set['time'],
+                size=attribute_set['size'],
                 gradient=attribute_set['gradient'])
 
         face.save()
