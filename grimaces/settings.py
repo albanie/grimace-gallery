@@ -27,7 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MIN_FACE_SIZE = 3600
 
+MATHJAX_ENABLED=True
 # Application definition
 
 INSTALLED_APPS = (
@@ -37,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_mathjax',
     'faces',
 )
 

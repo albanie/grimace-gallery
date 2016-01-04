@@ -7,28 +7,27 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
   <title>Grimaces </title>
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="grimaces information page">
+  <meta name="author" content="Samuel Albanie">
 
-	  <!-- Mobile Specific Metas
-	  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	  <!-- FONT
-	  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
 
-	  <!-- CSS
-	  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	  <link rel="stylesheet" href="{% static 'faces/css/normalize.css' %}">
-	  <link rel="stylesheet" href="{% static 'faces/css/skeleton.css' %}">
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="{% static 'faces/css/normalize.css' %}">
+  <link rel="stylesheet" href="{% static 'faces/css/skeleton.css' %}">
 
-	  <!-- Favicon
-	  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-	  <link rel="icon" type="image/png" href="{% static 'faces/images/favicon.png' %}">
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="{% static 'faces/images/favicon.png' %}">
 
-
-	</head>
+</head>
 	<body>
 
 	  <!-- Primary Page Layout
@@ -37,7 +36,7 @@
 	    <div class="row">
 	      <div class="one-half column" style="margin-top: 20%">
 		<h4>Grimaces dataset</h4>
-		<p>The grimaces dataset consists of a collection of faces, together with the gradient of the racing surface extracted from footage of the Tour de France, running between 2012 and 2014.</p>
+		<p>The grimaces dataset consists of a collection of faces, together with the gradient of the racing surface extracted from footage of the Tour de France, running between 2012 and 2015.</p>
 		</div>	
 	     </div>
 	    <div class="row">
@@ -69,6 +68,11 @@
 		      <td>{{ num_faces_2014 }}</td>
 		      <td>{{ min_gradient_2014 }}% to {{ max_gradient_2014 }}%</td>
 		    </tr>
+		    <tr>
+		      <td>2015</td>
+		      <td>{{ num_faces_2015 }}</td>
+		      <td>{{ min_gradient_2015 }}% to {{ max_gradient_2015 }}%</td>
+		    </tr>
 		  </tbody>
 		</table>
 		</div>
@@ -78,9 +82,24 @@
 	</div>
 	    <div class="row">
 		 <div class="one-half column">
-		<p>Each face has a minimum size of {{ min_face_size }} pixels. The faces can be viewed <a href="/cyclists">here</a>.</p>
+		<h5>Experiments</h5>	
+    <p>The dataset is being used to train a number of CNNs to perform gradient classification given a face as input. Years 2012 and 2013 are used for training and validation, while 2014 is used for testing. Results can be seen <a href="{% url 'faces:experiments' %}">here</a>.</p>
 	      </div>
+		 <div class="one-half column">
+        <h5>Related Work</h5>	
+        <p>Facial expression analysis is receiving a lot of attention at the moment. An overview of some relevant work is given <a href="{% url 'faces:related-work' %}">here</a>.</p>
+            </div>
     </div>
+	    <div class="row">
+		 <div class="one-half column">
+		<h5>Gallery</h5>	
+		<p>Each face has a minimum size of {{ min_face_size }} pixels. The faces can be viewed <a href="{% url 'faces:cyclists-all' %}">here</a>.</p>
+	      </div>
+		 <div class="one-half column">
+		<h5>Progress</h5>	
+    <p>Weekly targets and progress reports can be viewed <a href="{% url 'faces:progress' %}">here</a>.</p>
+	      </div>
+      </div>
   </div>
 
 <!-- End Document
